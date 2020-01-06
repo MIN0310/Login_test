@@ -1,9 +1,12 @@
 package com.min.login;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -11,40 +14,24 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private EditText eduserid;
-    private EditText edpassword;
-    private EditText edphone;
-    boolean isNext = false;
+    public static final int RC_LOGIN = 1;
+    boolean login = false;
+    private EditText edUserid;
+    private EditText edPassword;
+    private EditText edPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        eduserid = findViewById(R.id.ed_userid);
-        edpassword = findViewById(R.id.ed_password);
-        edphone = findViewById(R.id.ed_phone);
-        Switch sw = findViewById(R.id.switch1);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                isNext = isChecked;
-                TextView text = findViewById(R.id.switch1);
-                text.setText(isNext? "登入": "註冊");
-                TextView text2 = findViewById(R.id.button);
-                text2.setText(isNext? "登入": "註冊");
-            }
-        });
-
-    }
-    public void button(View view){
-        if(!isNext){
-            Intent intent = new Intent(this, AccountActivity.class);
-            startActivity(intent);
-        }else {
-            EditText edUserid = findViewById(R.id.ed_userid);
-            EditText edPassword = findViewById(R.id.ed_password);
-            EditText edPhone = findViewById(R.id.ed_phone);
+        edUserid = findViewById(R.id.ed_userid);
+        edPassword = findViewById(R.id.ed_password);
+        edPhone = findViewById(R.id.ed_phone);
+        if(!login){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivityForResult(intent, RC_LOGIN);
         }
     }
+
+
 }
