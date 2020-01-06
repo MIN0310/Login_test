@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }else {
             Intent intent = new Intent(this, AccountActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,RC_LOGIN);
         }
     }
     @Override
@@ -73,10 +74,17 @@ public class LoginActivity extends AppCompatActivity {
 //                String pw = data.getStringExtra("LOGIN_PASSWORD");
 //                String ph = data.getStringExtra("LOGIN_PHONE");
 //                Log.d("RESULT: ", uid + "/" + pw + "/" + ph);
+                SharedPreferences pref = getSharedPreferences("login",MODE_PRIVATE);
+                String a = pref.getString("id","");
+                String b = pref.getString("password","");
+                String c = pref.getString("phone","");
+                Log.d("Login", "onActivityResult: "+a+","+b+","+c);
+                edUserid.setText(a+"");
+                edPassword.setText(b+"");
+                edPhone.setText(c+"");
 
-                edUserid.setText(getSharedPreferences("USERID", MODE_PRIVATE).getString("id", ""));
-                edPassword.setText(getSharedPreferences("PASSWORD", MODE_PRIVATE).getString("password", ""));
-                edPhone.setText(getSharedPreferences("PHONE", MODE_PRIVATE).getString("phone", ""));
+
+
             }else {
 //                finish(); 會關掉
             }
