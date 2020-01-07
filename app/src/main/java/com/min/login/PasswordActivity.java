@@ -26,9 +26,11 @@ public class PasswordActivity extends AppCompatActivity {
 //        getIntent().putExtra("PASSWORD", pw);
 //        setResult(RESULT_OK, getIntent());
         SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
+//        SharedPreferences.Editor editor = pref.edit();
         String pw = edPassword.getText().toString();
-        editor.putString("password", pw).commit();
+        pref.edit()
+                .putString("password", pw)
+                .commit();
         Log.d("Password", "button: "+pw);
         Intent intent = new Intent(this, PhoneActivity.class);
         startActivity(intent);

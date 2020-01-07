@@ -1,6 +1,7 @@
 package com.min.login;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -78,12 +79,16 @@ public class LoginActivity extends AppCompatActivity {
                 String a = pref.getString("id","");
                 String b = pref.getString("password","");
                 String c = pref.getString("phone","");
-                Log.d("Login", "onActivityResult: "+a+","+b+","+c);
-                edUserid.setText(a+"");
-                edPassword.setText(b+"");
-                edPhone.setText(c+"");
+                Log.d("Login", "onActivityResult: " + a + "," + b + "," + c);
+                edUserid.setText(a + "");
+                edPassword.setText(b + "");
+                edPhone.setText(c + "");
 
-
+                new AlertDialog.Builder(this)
+                        .setTitle("會員資料")
+                        .setMessage("帳號：" + a + "\n" + "密碼：" + b + "\n" + "電話：" + c)
+                        .setPositiveButton("OK", null)
+                        .show();
 
             }else {
 //                finish(); 會關掉

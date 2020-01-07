@@ -25,8 +25,8 @@ public class PhoneActivity extends AppCompatActivity {
 //        getIntent().putExtra("PHONE", ph);
 //        setResult(RESULT_OK, getIntent());
         SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-        String   ph = edPhone.getText().toString();
+//        SharedPreferences.Editor editor = pref.edit();
+        String ph = edPhone.getText().toString();
         pref.edit()
                 .putString("phone", ph)
                 .commit();

@@ -26,9 +26,11 @@ public class AccountActivity extends AppCompatActivity {
 //        getIntent().putExtra("USERID", uid);
 //        setResult(RESULT_OK, getIntent());
         SharedPreferences pref = getSharedPreferences("login", MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
+//        SharedPreferences.Editor editor = pref.edit();
         String uid = edUserid.getText().toString();
-        editor.putString("id", uid).commit();
+        pref.edit()
+                .putString("id", uid)
+                .commit();
         Log.d("Account", "button: "+uid);
         AccountActivity.this.setResult(RESULT_OK);
         Intent intent = new Intent(this, PasswordActivity.class);
